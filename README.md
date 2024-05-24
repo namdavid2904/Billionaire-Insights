@@ -19,8 +19,8 @@ Ensure you have Python installed. It's recommended to use a virtual environment.
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/BillionaireInsights.git
-    cd BillionaireInsights
+    git clone https://github.com/yourusername/Billionaire-Insights.git
+    cd Billionaire-Insights
     ```
 
 2. Install the required libraries:
