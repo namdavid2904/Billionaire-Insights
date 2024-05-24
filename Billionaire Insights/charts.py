@@ -6,7 +6,7 @@ import numpy as np
 billionaire_dataset = pd.read_csv('df_ready.csv')
 
 
-# Gender x Continent (1)
+# Gender x Continent
 gender = billionaire_dataset.groupby(['continent', 'gender']).size().reset_index(name='count')
 gender['gender'] = pd.Categorical(gender['gender'], categories=sorted(gender['gender'].unique()), ordered=True)
 
@@ -29,7 +29,7 @@ plt.tight_layout()
 
 
 
-# Gender x Industry (2)
+# Gender x Industry
 gender_industry = billionaire_dataset.groupby(['gender', 'industry']).size().reset_index(name='count')
 gender_industry['gender'] = pd.Categorical(gender_industry['gender'], categories=sorted(gender_industry['gender'].unique()), ordered=True)
 
@@ -45,7 +45,7 @@ plt.tight_layout()
 
 
 
-# Age x Industry (3)
+# Age x Industry
 age_industry = billionaire_dataset.sort_values(by='industry')
 
 plt.figure(figsize=(14,8))
@@ -60,7 +60,7 @@ plt.tight_layout()
 
 
 
-# Age x Gender (5)
+# Age x Gender
 graph = sns.FacetGrid(billionaire_dataset, col="gender", height=5, aspect=1.2, sharey=False)
 colors = {'Male': 'blue', 'Female': 'red'}
 graph.map(sns.histplot, 'age', stat='density', bins=int((billionaire_dataset['age'].max() - billionaire_dataset['age'].min()) / 4), kde=True, color=colors, edgecolor='black', alpha=0.5)
@@ -73,7 +73,7 @@ plt.tight_layout()
 
 
 
-# Top 10 countries with most billionaires (6)
+# Top 10 countries with most billionaires 
 country = billionaire_dataset['country_of_residence'].value_counts().reset_index(name='count')
 country.columns = ['country', 'count']
 top10countries = country.head(10)
@@ -93,7 +93,7 @@ plt.tight_layout()
 
 
 
-# Top 5 industries operated businesses by the billionaires (7)
+# Top 5 industries operated businesses by the billionaires 
 industries = billionaire_dataset['industry'].value_counts()
 industries = (industries/industries.sum())*100
 top5industries = industries.head(5).reset_index()
@@ -110,7 +110,7 @@ plt.tight_layout()
 
 
 
-# Connection between wealth and industries (8)
+# Connection between wealth and industries
 wealth = billionaire_dataset.sort_values(by='industry', ascending=False)
 
 plt.figure(figsize=(12,6))
@@ -124,7 +124,7 @@ plt.tight_layout()
 
 
 
-# Industry x Continent (9)
+# Industry x Continent
 industry = billionaire_dataset.groupby(['continent', 'industry']).size().unstack(fill_value=0)
 industry = industry.loc[sorted(billionaire_dataset['continent'].unique(), reverse=True)]
 mask = industry == 0
